@@ -11,10 +11,13 @@ export interface IndexPageProps {
 export interface ArticleProps {
   article: {
     userId: number;
+    author: string;
     id: number;
     title: string;
+    picture?: string | any;
     body: string;
     excerpt: string;
+    date: string;
   };
 }
 

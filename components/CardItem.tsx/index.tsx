@@ -1,8 +1,6 @@
-//import styles from "../../styles/Article.module.css";
 import styled from "styled-components";
 import Link from "next/link";
 import { ArticleItemProps } from "../../Interfaces";
-import Image from "next/image";
 
 const CardContainer = styled.div`
   overflow: hidden;
@@ -25,6 +23,8 @@ const CardContainer = styled.div`
   .card-body {
     .image-wrapper {
       img {
+        height: 267px;
+        width: 400px;
         object-fit: cover;
         filter: brightness(95%);
       }
@@ -65,7 +65,7 @@ const CardItem = ({ data }: ArticleItemProps) => {
           {/* Los numeros height y width son la resolucion original de la imagen */}
           <Link href={`/article/${data.id}`}>
             <a>
-              <Image src={data.picture} alt="receta" height={267} width={400} />
+              <img src={data.picture} alt="receta" />
             </a>
           </Link>
         </div>

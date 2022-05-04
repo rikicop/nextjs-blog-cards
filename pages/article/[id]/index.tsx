@@ -1,21 +1,54 @@
 //import { useRouter } from "next/router";
+import styled from "styled-components";
 import { server } from "../../../config";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import Meta from "../../../components/Meta";
 import { ArticleProps } from "../../../Interfaces";
+import Image from "next/image";
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem;
+  overflow: hidden;
+  position: relative;
+
+  .date {
+    font-size: 0.8rem;
+    margin: 0.5rem;
+    align-self: flex-start;
+  }
+  .title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  .body {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+`;
 
 const article = ({ article }: ArticleProps) => {
   //   const router = useRouter();
   //   const { id } = router.query;
   return (
-    <>
+    <Section>
       <Meta title={article.title} description={article.excerpt} />
-      <h1>{article.title}</h1>
-      <p>{article.body}</p>
+      <div style={{ height: "500px", width: "100%", position: "relative" }}>
+        <Image src={article.picture} layout="fill" />
+      </div>
+      <p className="date">{article.date}</p>
+      <p className="author">{article.author}</p>
+      <h1 className="title">{article.title}</h1>
+      <p className="body">{article.body}</p>
       <br />
-      <Link href="/">Volver</Link>
-    </>
+      <div className="link-wrapper">
+        <Link href="/">Volver</Link>
+      </div>
+    </Section>
   );
 };
 
