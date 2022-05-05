@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Link from "next/link";
 import { ArticleItemProps } from "../../Interfaces";
+import { useRouter } from "next/router";
 
 const CardContainer = styled.div`
   overflow: hidden;
@@ -20,12 +20,9 @@ const CardContainer = styled.div`
     color: #fff;
   }
 
-  .card-body {
+  .card-head {
     .image-wrapper {
       img {
-        height: 267px;
-        width: 400px;
-        object-fit: cover;
         filter: brightness(95%);
       }
     }
@@ -36,53 +33,45 @@ const CardContainer = styled.div`
       padding: 0 1rem;
     }
   }
-  .btn-wrapper {
+  .info-author {
+    margin-top: 10px;
+    border-top: #3e3c3c solid 1px;
+    padding: 1rem;
     display: flex;
-    justify-content: center;
-    .card-btn {
-      padding: 1rem;
-      font-family: inherit;
+    justify-content: space-between;
+    align-items: center;
+    .name-author {
+      font-size: 1.2rem;
       font-weight: bold;
-      font-size: 1rem;
-      margin: 1rem;
-      border: 2px solid #c22222;
-      background: transparent;
-      color: #c22222;
-      border-radius: 0.3rem;
-      transition: 0.5s ease;
-      cursor: pointer;
+      color: #3e3c3c;
+    }
+    .img-author {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 1rem;
     }
   }
 `;
 
 const CardItem = ({ data }: ArticleItemProps) => {
+  const router = useRouter();
   return (
-    <CardContainer>
-      {/*  <Link href={`/article/${data.id}`}>
-        <a>  */}
-      <div className="card-body">
+    <CardContainer onClick={() => router.push(`/article/${data.id}`)}>
+      <div className="card-head">
         <div className="image-wrapper">
-          {/* Los numeros height y width son la resolucion original de la imagen */}
-          <Link href={`/article/${data.id}`}>
-            <a>
-              <img src={data.picture} alt="receta" />
-            </a>
-          </Link>
+          <img
+            src={data.picture}
+            alt="receta"
+            style={{ height: "15vw", width: "100%", objectFit: "cover" }}
+          />
         </div>
-        <Link href={`/article/${data.id}`}>
-          <a>
-            {" "}
-            <h3 className="card-title">{data.title}</h3>
-            <p className="card-excerpt">{data.excerpt}</p>
-          </a>
-        </Link>
+        <h3 className="card-title">{data.title}</h3>
+        <p className="card-excerpt">{data.excerpt}</p>
       </div>
-      <div className="btn-wrapper">
-        <Link href={`/article/${data.id}`}>
-          <a>
-            <button className="card-btn">Ver Receta</button>
-          </a>
-        </Link>
+      <div className="info-author">
+        <p className="name-author">{data.author}</p>
+        <img className="img-author" src={data.authorPicture} alt="author" />
       </div>
     </CardContainer>
   );

@@ -28,5 +28,7 @@ export interface ArticleItemProps {
     picture?: string | any;
     body: string;
     excerpt: string;
+    authorPicture?: string | any;
+    author?: string;
   };
 }

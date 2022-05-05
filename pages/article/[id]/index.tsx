@@ -11,9 +11,12 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 8rem;
   overflow: hidden;
   position: relative;
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 
   .date {
     font-size: 0.8rem;
